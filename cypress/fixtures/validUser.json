@@ -1,0 +1,7 @@
+{
+    "validUser": "standard_user",
+    "password": "secret_sauce",
+    "expected": "Products"
+    
+}
+  
