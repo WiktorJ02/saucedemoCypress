@@ -4,9 +4,8 @@ describe('My test', ()=>{
         cy.fixture('users').then((users)=>{
             cy.visit('');
             users.forEach(user => {
-                cy.get('#user-name').clear().type(user.username);
-                cy.get('#password').clear().type(user.password);
-                cy.get('#login-button').click();
+
+                cy.login(user.username, user.password);
 
                 cy.url().then($url => {
                     if($url.includes(path)) {
@@ -19,6 +18,10 @@ describe('My test', ()=>{
                     }
                     else{
                         cy.get('h3[data-test="error"]').contains(user.expected).should('exist');
+                        
+                        cy.get('#user-name').clear();
+        
+                        cy.get('#password').clear();
                     }
                 })
             })

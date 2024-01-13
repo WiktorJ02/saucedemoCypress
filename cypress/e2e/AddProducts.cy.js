@@ -1,4 +1,10 @@
 describe('TestSuite', ()=> {
+  let data;
+  before(()=>{
+    cy.fixture('validUser').then((saucedemo)=>{
+      data = saucedemo;
+    })
+  })
     it('Add all products', () => {
         cy.visit('')      
     
@@ -10,11 +16,7 @@ describe('TestSuite', ()=> {
         cy.get('.bot_column').should('exist')
         .and('be.visible')
     
-        cy.get('[id="user-name"]').type('standard_user')
-        
-        cy.get('[id="password"]').type('secret_sauce')
-    
-        cy.get('[id="login-button"]').click()
+        cy.login(data.validUser, data.password);
     
         cy.url().should('include', '/v1/inventory')
     

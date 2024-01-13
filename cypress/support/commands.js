@@ -25,3 +25,16 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 /// <reference types="Cypress" />
+
+Cypress.Commands.add('clickLink', (label) => {
+    cy.get('a').contains(label).click();
+})
+
+Cypress.Commands.add('login', (name, password) => {
+
+    cy.get('#user-name').type(name)
+        
+    cy.get('#password').type(password)
+    
+    cy.get('#login-button').click()
+})
